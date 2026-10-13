@@ -1,4 +1,9 @@
 import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import LabelEncoder
+import warnings
+warnings.filterwarnings('ignore')
 
 # -------------------------------------------------------------------
 # PAS 1: IMPORTACIÓ DE DADES
@@ -119,12 +124,6 @@ print(f"Base de dades enriquida: {df_model_aces.shape[0]} registres preparats pe
 columnes_mostrar = ['Date', 'Player', 'Opponent', 'Surface', 'Exp_Ace_Rate', 'Exp_Opponent_Allowed_Rate', 'Projected_Ace_Rate', 'Aces_Made']
 display(df_model_aces[df_model_aces['Player'] == 'Taylor Fritz'][columnes_mostrar].tail(10))
 
-import pandas as pd
-import numpy as np
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import LabelEncoder
-import warnings
-warnings.filterwarnings('ignore')
 
 # -------------------------------------------------------------------
 # PAS 4 CORREGIT: EL CREUAMENT PERFECTE (SELF-MERGE)
@@ -204,6 +203,7 @@ def predir_aces_definitiu(jugador1, jugador2, superficie='Hard', best_of=3):
     aces_j1 = model_rf.predict(partit_j1)[0]
     aces_j2 = model_rf.predict(partit_j2)[0]
     
+'''    
     print("-" * 50)
     print(f"🎾 ORACLE PREDICTIU: {jugador1} vs {jugador2}")
     print(f"🌍 Pista: {superficie}  |  ⚙️ Format: Millor de {best_of} sets")
@@ -211,11 +211,13 @@ def predir_aces_definitiu(jugador1, jugador2, superficie='Hard', best_of=3):
     print(f"👉 Predicció {jugador1}: {aces_j1:.1f} Aces")
     print(f"👉 Predicció {jugador2}: {aces_j2:.1f} Aces")
     print("-" * 50)
-
+'''
 # PROVES: Ara SÍ que veurem la diferència real entre un canoner i la resta
+'''
 predir_aces_definitiu("Hubert Hurkacz", "Carlos Alcaraz", superficie="Hard", best_of=3)
 predir_aces_definitiu("Hubert Hurkacz", "Carlos Alcaraz", superficie="Clay", best_of=3)
 predir_aces_definitiu("Hubert Hurkacz", "Carlos Alcaraz", superficie="Grass", best_of=5)
+'''
 
 # -------------------------------------------------------------------
 # ORACLE TESTER
